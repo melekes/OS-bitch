@@ -12,8 +12,8 @@ target/boot.o: src/asm/boot.asm
 		mkdir -p target
 		nasm -f elf64 src/asm/boot.asm -o target/boot.o
 
-target/kernel.bin: target/multiboot_header.o target/boot.o src/asm/linker.ld
-		ld -n -o target/kernel.bin -T src/asm/linker.ld target/multiboot_header.o target/boot.o
+target/kernel.bin: target/multiboot_header.o target/boot.o src/asm/linker.ld cargo
+		ld -n -o target/kernel.bin -T src/asm/linker.ld target/multiboot_header.o target/boot.o target/x86_64-unknown-osbitch-gnu/release/libosbitch.a
 
 target/os.iso: target/kernel.bin src/asm/grub.cfg
 		mkdir -p target/isofiles/boot/grub
@@ -26,3 +26,7 @@ run: target/os.iso
 
 clean:
 		cargo clean
+
+cargo:
+		xargo build --release --target x86_64-unknown-osbitch-gnu
+
