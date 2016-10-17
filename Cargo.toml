@@ -1,0 +1,9 @@
+[package]
+name = "osbitch"
+version = "0.1.0"
+authors = ["Anton Kalyaev <anton.kalyaev@gmail.com>"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
