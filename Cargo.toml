@@ -7,3 +7,6 @@ authors = ["Anton Kalyaev <anton.kalyaev@gmail.com>"]
 crate-type = ["staticlib"]
 
 [dependencies]
+
+[profile.release]
+panic = "abort"
